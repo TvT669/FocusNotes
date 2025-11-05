@@ -1,0 +1,564 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXContainerItemProxy section */
+		91AFD8892EBA002A00FF843D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 91AFD8652EBA002800FF843D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 91AFD86C2EBA002800FF843D;
+			remoteInfo = FocusNotes;
+		};
+		91AFD8932EBA002A00FF843D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 91AFD8652EBA002800FF843D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 91AFD86C2EBA002800FF843D;
+			remoteInfo = FocusNotes;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		91AFD86D2EBA002800FF843D /* FocusNotes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FocusNotes.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		91AFD8882EBA002A00FF843D /* FocusNotesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FocusNotesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		91AFD8922EBA002A00FF843D /* FocusNotesUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FocusNotesUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		91AFD89A2EBA002A00FF843D /* Exceptions for "FocusNotes" folder in "FocusNotes" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 91AFD86C2EBA002800FF843D /* FocusNotes */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		91AFD86F2EBA002800FF843D /* FocusNotes */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				91AFD89A2EBA002A00FF843D /* Exceptions for "FocusNotes" folder in "FocusNotes" target */,
+			);
+			path = FocusNotes;
+			sourceTree = "<group>";
+		};
+		91AFD88B2EBA002A00FF843D /* FocusNotesTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = FocusNotesTests;
+			sourceTree = "<group>";
+		};
+		91AFD8952EBA002A00FF843D /* FocusNotesUITests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = FocusNotesUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXFileSystemSynchronizedRootGroup section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		91AFD86A2EBA002800FF843D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		91AFD8852EBA002A00FF843D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		91AFD88F2EBA002A00FF843D /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		91AFD8642EBA002800FF843D = {
+			isa = PBXGroup;
+			children = (
+				91AFD86F2EBA002800FF843D /* FocusNotes */,
+				91AFD88B2EBA002A00FF843D /* FocusNotesTests */,
+				91AFD8952EBA002A00FF843D /* FocusNotesUITests */,
+				91AFD86E2EBA002800FF843D /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		91AFD86E2EBA002800FF843D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				91AFD86D2EBA002800FF843D /* FocusNotes.app */,
+				91AFD8882EBA002A00FF843D /* FocusNotesTests.xctest */,
+				91AFD8922EBA002A00FF843D /* FocusNotesUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		91AFD86C2EBA002800FF843D /* FocusNotes */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 91AFD89B2EBA002A00FF843D /* Build configuration list for PBXNativeTarget "FocusNotes" */;
+			buildPhases = (
+				91AFD8692EBA002800FF843D /* Sources */,
+				91AFD86A2EBA002800FF843D /* Frameworks */,
+				91AFD86B2EBA002800FF843D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				91AFD86F2EBA002800FF843D /* FocusNotes */,
+			);
+			name = FocusNotes;
+			packageProductDependencies = (
+			);
+			productName = FocusNotes;
+			productReference = 91AFD86D2EBA002800FF843D /* FocusNotes.app */;
+			productType = "com.apple.product-type.application";
+		};
+		91AFD8872EBA002A00FF843D /* FocusNotesTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 91AFD8A02EBA002A00FF843D /* Build configuration list for PBXNativeTarget "FocusNotesTests" */;
+			buildPhases = (
+				91AFD8842EBA002A00FF843D /* Sources */,
+				91AFD8852EBA002A00FF843D /* Frameworks */,
+				91AFD8862EBA002A00FF843D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				91AFD88A2EBA002A00FF843D /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				91AFD88B2EBA002A00FF843D /* FocusNotesTests */,
+			);
+			name = FocusNotesTests;
+			packageProductDependencies = (
+			);
+			productName = FocusNotesTests;
+			productReference = 91AFD8882EBA002A00FF843D /* FocusNotesTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		91AFD8912EBA002A00FF843D /* FocusNotesUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 91AFD8A32EBA002A00FF843D /* Build configuration list for PBXNativeTarget "FocusNotesUITests" */;
+			buildPhases = (
+				91AFD88E2EBA002A00FF843D /* Sources */,
+				91AFD88F2EBA002A00FF843D /* Frameworks */,
+				91AFD8902EBA002A00FF843D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				91AFD8942EBA002A00FF843D /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				91AFD8952EBA002A00FF843D /* FocusNotesUITests */,
+			);
+			name = FocusNotesUITests;
+			packageProductDependencies = (
+			);
+			productName = FocusNotesUITests;
+			productReference = 91AFD8922EBA002A00FF843D /* FocusNotesUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		91AFD8652EBA002800FF843D /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastUpgradeCheck = 1620;
+				TargetAttributes = {
+					91AFD86C2EBA002800FF843D = {
+						CreatedOnToolsVersion = 16.2;
+					};
+					91AFD8872EBA002A00FF843D = {
+						CreatedOnToolsVersion = 16.2;
+						TestTargetID = 91AFD86C2EBA002800FF843D;
+					};
+					91AFD8912EBA002A00FF843D = {
+						CreatedOnToolsVersion = 16.2;
+						TestTargetID = 91AFD86C2EBA002800FF843D;
+					};
+				};
+			};
+			buildConfigurationList = 91AFD8682EBA002800FF843D /* Build configuration list for PBXProject "FocusNotes" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 91AFD8642EBA002800FF843D;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 91AFD86E2EBA002800FF843D /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				91AFD86C2EBA002800FF843D /* FocusNotes */,
+				91AFD8872EBA002A00FF843D /* FocusNotesTests */,
+				91AFD8912EBA002A00FF843D /* FocusNotesUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		91AFD86B2EBA002800FF843D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		91AFD8862EBA002A00FF843D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		91AFD8902EBA002A00FF843D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		91AFD8692EBA002800FF843D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		91AFD8842EBA002A00FF843D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		91AFD88E2EBA002A00FF843D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		91AFD88A2EBA002A00FF843D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 91AFD86C2EBA002800FF843D /* FocusNotes */;
+			targetProxy = 91AFD8892EBA002A00FF843D /* PBXContainerItemProxy */;
+		};
+		91AFD8942EBA002A00FF843D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 91AFD86C2EBA002800FF843D /* FocusNotes */;
+			targetProxy = 91AFD8932EBA002A00FF843D /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		91AFD89C2EBA002A00FF843D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 4YKFFA7W42;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = FocusNotes/Info.plist;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.bee.FocusNotes;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		91AFD89D2EBA002A00FF843D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 4YKFFA7W42;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = FocusNotes/Info.plist;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.bee.FocusNotes;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		91AFD89E2EBA002A00FF843D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		91AFD89F2EBA002A00FF843D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		91AFD8A12EBA002A00FF843D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 4YKFFA7W42;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.bee.FocusNotesTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FocusNotes.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/FocusNotes";
+			};
+			name = Debug;
+		};
+		91AFD8A22EBA002A00FF843D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 4YKFFA7W42;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.bee.FocusNotesTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FocusNotes.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/FocusNotes";
+			};
+			name = Release;
+		};
+		91AFD8A42EBA002A00FF843D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 4YKFFA7W42;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.bee.FocusNotesUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = FocusNotes;
+			};
+			name = Debug;
+		};
+		91AFD8A52EBA002A00FF843D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 4YKFFA7W42;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.bee.FocusNotesUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = FocusNotes;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		91AFD8682EBA002800FF843D /* Build configuration list for PBXProject "FocusNotes" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				91AFD89E2EBA002A00FF843D /* Debug */,
+				91AFD89F2EBA002A00FF843D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		91AFD89B2EBA002A00FF843D /* Build configuration list for PBXNativeTarget "FocusNotes" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				91AFD89C2EBA002A00FF843D /* Debug */,
+				91AFD89D2EBA002A00FF843D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		91AFD8A02EBA002A00FF843D /* Build configuration list for PBXNativeTarget "FocusNotesTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				91AFD8A12EBA002A00FF843D /* Debug */,
+				91AFD8A22EBA002A00FF843D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		91AFD8A32EBA002A00FF843D /* Build configuration list for PBXNativeTarget "FocusNotesUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				91AFD8A42EBA002A00FF843D /* Debug */,
+				91AFD8A52EBA002A00FF843D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 91AFD8652EBA002800FF843D /* Project object */;
+}
