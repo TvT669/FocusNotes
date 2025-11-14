@@ -9,15 +9,10 @@
 
 @implementation NoteTableViewCell
 
-- (void)awakeFromNib {
-    [super awakeFromNib];
-    // Initialization code
-}
-
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
+-(void)configCell:(NoteModel *)note{
+    self.title.text = note.titleName;
+    self.content.text = note.contentText;
+    self.date.text = note.dateText;
 }
 
 @end

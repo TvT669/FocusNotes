@@ -6,6 +6,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "NoteModel.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -13,6 +14,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UILabel *content;
 @property (weak, nonatomic) IBOutlet UILabel *title;
 @property (weak, nonatomic) IBOutlet UILabel *date;
+
+-(void)configCell:(NoteModel *)note;
 
 @end
 

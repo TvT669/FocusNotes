@@ -12,34 +12,20 @@
 
 @interface NotesTableViewController ()
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
-@property (nonatomic, strong) NSMutableArray<NoteModel *> *notes;
+@property(strong,nonatomic) NSMutableArray *notes;
+
 
 
 @end
-
 @implementation NotesTableViewController
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    // 初始化数据源
-       [self setupData];
-    //[self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"NoteCell"];
     self.tableView.rowHeight = 80.0;
-       
        // 设置导航栏
     self.title = @"笔记";
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem: UIBarButtonSystemItemAdd target:self action:@selector(addNotes)];
-    
-}
-
-- (void)setupData {
-    self.notes = [[NSMutableArray alloc] init];
-    
-    // 添加一些示例数据
-    [self.notes addObject:[[NoteModel alloc] initWithTitle:@"第一篇笔记" content:@"这是我的第一篇笔记内容"]];
-    [self.notes addObject:[[NoteModel alloc] initWithTitle:@"学习计划" content:@"今天要学习 iOS 开发"]];
-    [self.notes addObject:[[NoteModel alloc] initWithTitle:@"购物清单" content:@"牛奶、面包、鸡蛋"]];
+    self.notes = [[[NoteModel alloc]init]notes];
 }
 
 -(void)addNotes{
@@ -55,15 +41,11 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.notes.count;
+    //return self.titles.count;
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     NoteTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"NoteCell"];
-    NoteModel *note = self.notes[indexPath.row];
-    cell.title.text = note.title;
-    cell.content.text = note.content;
-    NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
-    formatter.dateFormat = @"yyyy-MM-dd HH:mm:ss";
-    cell.date.text = [formatter stringFromDate:note.date];
+    [cell configCell:[self.notes objectAtIndex:indexPath.row]];
     return cell;
     
 }
@@ -74,7 +56,7 @@
     
     // 处理单元格点击事件
     NoteModel *selectedNote = self.notes[indexPath.row];
-    NSLog(@"选中了笔记: %@", selectedNote.title);
+    NSLog(@"选中了笔记: %@", selectedNote.titleName);
     
     // 这里可以跳转到详情页面
 }

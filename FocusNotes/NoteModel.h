@@ -10,11 +10,15 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface NoteModel : NSObject
-@property (nonatomic, copy) NSString *title;
-@property (nonatomic, copy) NSString *content;
-@property (nonatomic, strong) NSDate *date;
+@property (nonatomic, copy) NSString *titleName;
+@property (nonatomic, copy) NSString *contentText;
+@property (nonatomic, strong) NSDate *dateText;
 
-- (instancetype)initWithTitle:(NSString *)title content:(NSString *)content;
+
+
+@property (nonatomic, strong) NSMutableArray *notes;
+
+
 
 @end
 
