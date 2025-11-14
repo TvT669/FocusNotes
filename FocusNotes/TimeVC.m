@@ -80,7 +80,11 @@
                                      style:UIAlertActionStyleDefault
                                      handler:^(UIAlertAction * _Nonnull action) {
             // 跳转到笔记页面
-            [self performSegueWithIdentifier:@"goToNotes" sender:nil];
+            UITabBarController *tabBarController = (UITabBarController *)self.tabBarController;
+            if (tabBarController) {
+                // NotesTableViewController 是第二个 Tab，索引为 1
+                tabBarController.selectedIndex = 1;
+            }
         }];
 
         UIAlertAction *cancelAction = [UIAlertAction

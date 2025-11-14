@@ -8,9 +8,12 @@
 
 #import "NotesTableViewController.h"
 #import "NoteModel.h"
+#import "NoteTableViewCell.h"
 
 @interface NotesTableViewController ()
+@property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray<NoteModel *> *notes;
+
 
 @end
 
@@ -22,6 +25,7 @@
     // 初始化数据源
        [self setupData];
     //[self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"NoteCell"];
+    self.tableView.rowHeight = 80.0;
        
        // 设置导航栏
     self.title = @"笔记";
@@ -53,28 +57,15 @@
     return self.notes.count;
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"NoteCell"];
-    if(cell == nil){
-        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"NoteCell"];
-    }
-    
+    NoteTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"NoteCell"];
     NoteModel *note = self.notes[indexPath.row];
-    
-    // 设置单元格内容
-    cell.textLabel.text = note.title;
-    
-    // 添加日期显示
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    formatter.dateFormat = @"MM-dd HH:mm";
-    NSString *dateString = [formatter stringFromDate:note.date];
-    
-    // 组合内容和日期
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"%@ • %@", note.content, dateString];
-    cell.detailTextLabel.textColor = [UIColor grayColor];
-    
-    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-
+    cell.title.text = note.title;
+    cell.content.text = note.content;
+    NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
+    formatter.dateFormat = @"yyyy-MM-dd HH:mm:ss";
+    cell.date.text = [formatter stringFromDate:note.date];
     return cell;
+    
 }
 #pragma mark - Table view delegate
 
