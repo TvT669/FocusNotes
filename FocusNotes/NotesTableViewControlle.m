@@ -57,6 +57,8 @@
     // 处理单元格点击事件
     NoteModel *selectedNote = self.notes[indexPath.row];
     NSLog(@"选中了笔记: %@", selectedNote.titleName);
+    //触发跳转
+    [self performSegueWithIdentifier:@"showNoteDetail" sender:selectedNote];
     
     // 这里可以跳转到详情页面
 }
@@ -77,6 +79,7 @@
 -(NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath{
     return @"删除";
 }
+
 
 
 @end
