@@ -146,13 +146,19 @@
         <!--Note Detail View Controller-->
         <scene sceneID="uwV-Hg-lKP">
             <objects>
-                <viewController id="dHD-h9-wyh" customClass="NoteDetailViewController" sceneMemberID="viewController">
+                <viewController hidesBottomBarWhenPushed="YES" id="dHD-h9-wyh" customClass="NoteDetailViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="iWa-ZF-OAb">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="请输入标题..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fYg-cl-E6X">
+                                <rect key="frame" x="1" y="103" width="376" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="L0n-BV-BCG">
-                                <rect key="frame" x="16" y="103" width="377" height="614"/>
+                                <rect key="frame" x="8" y="145" width="377" height="683"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <color key="textColor" systemColor="labelColor"/>
@@ -177,11 +183,12 @@
                     </navigationItem>
                     <connections>
                         <outlet property="noteText" destination="L0n-BV-BCG" id="BSw-I6-SlA"/>
+                        <outlet property="titleField" destination="fYg-cl-E6X" id="F6e-p1-Zt8"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dKU-40-AOg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="610" y="1413"/>
+            <point key="canvasLocation" x="608.39694656488552" y="1412.6760563380283"/>
         </scene>
         <!--计时-->
         <scene sceneID="D6E-9R-ral">
@@ -221,28 +228,7 @@
             </objects>
             <point key="canvasLocation" x="-753" y="463"/>
         </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="n49-QM-4VE">
-            <objects>
-                <navigationController storyboardIdentifier="NoteDetailViewController" automaticallyAdjustsScrollViewInsets="NO" id="4sM-F2-ZAo" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="yAK-yy-V8F">
-                        <rect key="frame" x="0.0" y="59" width="393" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="dHD-h9-wyh" kind="relationship" relationship="rootViewController" id="c4g-Ex-yl2"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="vgy-ve-vjY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-753" y="1413"/>
-        </scene>
     </scenes>
-    <inferredMetricsTieBreakers>
-        <segue reference="itr-4t-5nB"/>
-    </inferredMetricsTieBreakers>
     <resources>
         <image name="list.bullet.clipboard" catalog="system" width="98" height="128"/>
         <image name="list.bullet.rectangle.portrait.fill" catalog="system" width="115" height="128"/>

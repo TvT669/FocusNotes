@@ -13,6 +13,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong, nonatomic) NSMutableArray *notes;
 - (void)saveNotesToUserDefaults;
 
+// 从其他页面（如 TimeVC）调用，直接打开“新建笔记”界面
+- (void)openCreateNote;
+
 
 
 @end

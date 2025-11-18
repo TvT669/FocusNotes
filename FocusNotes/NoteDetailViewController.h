@@ -25,6 +25,7 @@ typedef NS_ENUM(NSUInteger, NoteDetailMode) {
 - (IBAction)save:(id _Nullable )sender;
 - (IBAction)cancel:(id _Nullable )sender;
 @property (weak, nonatomic) IBOutlet UITextView *noteText;
+@property (weak, nonatomic) IBOutlet UITextField *titleField;
 
 @end
 

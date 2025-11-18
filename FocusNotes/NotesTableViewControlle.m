@@ -39,6 +39,13 @@
     [self performSegueWithIdentifier:@"showNoteDetail" sender:nil];
 }
 
+// 对外公开的方法：从其他页面触发新建笔记
+- (void)openCreateNote {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self addNewNote];
+    });
+}
+
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {

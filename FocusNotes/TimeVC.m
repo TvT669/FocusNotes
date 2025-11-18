@@ -6,6 +6,7 @@
 //
 
 #import "TimeVC.h"
+#import "NotesTableViewController.h"
 
 @interface TimeVC ()
 @property (nonatomic, assign) NSInteger totalSeconds;      // 总秒数（25 * 60）
@@ -79,11 +80,26 @@
                                      actionWithTitle:@"记录笔记"
                                      style:UIAlertActionStyleDefault
                                      handler:^(UIAlertAction * _Nonnull action) {
-            // 跳转到笔记页面
+            // 切换到“笔记”Tab 并立即打开新建笔记页
             UITabBarController *tabBarController = (UITabBarController *)self.tabBarController;
-            if (tabBarController) {
-                // NotesTableViewController 是第二个 Tab，索引为 1
-                tabBarController.selectedIndex = 1;
+            if (tabBarController && tabBarController.viewControllers.count > 1) {
+                tabBarController.selectedIndex = 1; // 切到“笔记”
+
+                // 等一帧确保切换完成后再取目标控制器
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    UIViewController *selectedVC = tabBarController.selectedViewController;
+                    UINavigationController *notesNav = nil;
+                    if ([selectedVC isKindOfClass:[UINavigationController class]]) {
+                        notesNav = (UINavigationController *)selectedVC;
+                    }
+                    if (notesNav) {
+                        UIViewController *root = notesNav.viewControllers.firstObject;
+                        if ([root isKindOfClass:[NotesTableViewController class]]) {
+                            NotesTableViewController *notesVC = (NotesTableViewController *)root;
+                            [notesVC openCreateNote];
+                        }
+                    }
+                });
             }
         }];
 
