@@ -10,7 +10,8 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface NotesTableViewController : UITableViewController
-
+@property (strong, nonatomic) NSMutableArray *notes;
+- (void)saveNotesToUserDefaults;
 
 
 

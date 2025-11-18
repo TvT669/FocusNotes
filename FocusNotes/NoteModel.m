@@ -20,7 +20,9 @@
             NoteModel *note = [[NoteModel alloc]init];
             note.titleName = self.titles[i];
             note.contentText = self.contents[i];
-            note.dateText = self.dates[i];
+            NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+            formatter.dateFormat = @"yyyy-MM-dd HH:mm"; // 与 NoteDetailViewController 保持一致
+            note.dateText = [formatter stringFromDate:self.dates[i]];
             [_notes addObject:note];
         }
     }
@@ -43,10 +45,19 @@
 }
 -(NSArray *)dates{
     if(_dates == nil){
-        _dates = @[@"2025年5月28日",@"2025年6月8日",@"2025年7月14日"];
+        _dates = @[
+                [self dateFromString:@"2025年5月28日"],
+                [self dateFromString:@"2025年6月8日"],
+                [self dateFromString:@"2025年7月14日"]
+           ];
         
     }
     return _dates;
 }
-
+// 新增日期转换方法
+- (NSDate *)dateFromString:(NSString *)dateString {
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"yyyy年MM月dd日"];
+    return [formatter dateFromString:dateString];
+}
 @end

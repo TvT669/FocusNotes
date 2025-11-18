@@ -6,6 +6,7 @@
 //
 
 #import "NoteDetailViewController.h"
+#import "NoteModel.h"
 
 @interface NoteDetailViewController ()
 
@@ -15,11 +16,14 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
-    // 如果有要编辑的笔记，填充数据
-      if (self.noteToEdit) {
-          self.noteText.text = self.noteToEdit.contentText;
-      }
+    // 标题及初始数据
+    if (self.mode == NoteDetailModeEdit && self.noteToEdit) {
+        self.title = @"编辑笔记";
+        self.noteText.text = self.noteToEdit.contentText ?: @"";
+    } else {
+        self.title = @"新建笔记";
+        self.noteText.text = @"";
+    }
 }
 
 /*
@@ -32,26 +36,29 @@
 }
 */
 
+
 - (IBAction)save:(id)sender {
-    // 获取文本框中的内容
-        NSString *content = self.noteText.text ?: @"";
-        
-        // 更新或创建笔记
-        if (self.noteToEdit) {
-            // 编辑现有笔记
-            self.noteToEdit.contentText = content;
-        } else {
-            // 创建新笔记
-            NoteModel *newNote = [[NoteModel alloc] init];
-            newNote.contentText = content;
-            newNote.dateText = [NSDate date]; // 设置创建时间
-            // 注意：你可能还需要设置 titleName，这里假设你有另一个输入框
-        }
-        
-        // 关闭详情页，返回列表
-        [self.navigationController popViewControllerAnimated:YES];
-        
-    
+    NSString *content = self.noteText.text ?: @"";
+
+    BOOL isNew = (self.mode == NoteDetailModeCreate || self.noteToEdit == nil);
+    NoteModel *target = self.noteToEdit;
+    if (!target) {
+        target = [[NoteModel alloc] init];
+        // 默认标题
+        NSDateFormatter *tf = [[NSDateFormatter alloc] init];
+        tf.dateFormat = @"MM-dd HH:mm";
+        target.titleName = [NSString stringWithFormat:@"新笔记 %@", [tf stringFromDate:[NSDate date]]];
+    }
+    target.contentText = content;
+    // 更新时间字符串
+    NSDateFormatter *df = [[NSDateFormatter alloc] init];
+    df.dateFormat = @"yyyy-MM-dd HH:mm";
+    target.dateText = [df stringFromDate:[NSDate date]];
+
+    if (self.onSave) {
+        self.onSave(target, isNew);
+    }
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (IBAction)cancel:(id)sender {
@@ -59,11 +66,6 @@
        [self.navigationController popViewControllerAnimated:YES];
     
 }
--(void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
-    if([segue.identifier isEqualToString:@"showNoteDetail"]){
-        NoteDetailViewController *detailVC = segue.destinationViewController;
-        detailVC.noteToEdit = sender;
-        
-    }
-}
+// 不在详情页里处理自身的 segue；由列表页设置 mode 与回调
+
 @end

@@ -155,7 +155,6 @@
                                 <rect key="frame" x="16" y="103" width="377" height="614"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                 <color key="textColor" systemColor="labelColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -167,17 +166,17 @@
                     <navigationItem key="navigationItem" id="wOQ-RV-jau">
                         <barButtonItem key="leftBarButtonItem" style="plain" systemItem="cancel" id="DeT-Zx-ECv">
                             <connections>
-                                <action selector="cancel:" destination="dHD-h9-wyh" id="QtZ-Qy-DGv"/>
+                                <action selector="cancel:" destination="dHD-h9-wyh" id="zxi-wG-olP"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" style="plain" systemItem="save" id="ZRx-lc-v66">
                             <connections>
-                                <action selector="save:" destination="dHD-h9-wyh" id="Jh5-3B-j8v"/>
+                                <action selector="save:" destination="dHD-h9-wyh" id="MaH-an-pj4"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="noteText" destination="L0n-BV-BCG" id="bz3-fQ-2bO"/>
+                        <outlet property="noteText" destination="L0n-BV-BCG" id="BSw-I6-SlA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dKU-40-AOg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
