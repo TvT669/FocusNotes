@@ -6,6 +6,12 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		9141602B2ECDCD2100383D79 /* UIOnboarding in Frameworks */ = {isa = PBXBuildFile; productRef = 9141602A2ECDCD2100383D79 /* UIOnboarding */; };
+		914160B52ECDE66000383D79 /* UIOnboarding in Frameworks */ = {isa = PBXBuildFile; productRef = 914160B42ECDE66000383D79 /* UIOnboarding */; };
+		914160BB2ECDEF0300383D79 /* UIOnboarding in Frameworks */ = {isa = PBXBuildFile; productRef = 914160BA2ECDEF0300383D79 /* UIOnboarding */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		91AFD8892EBA002A00FF843D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -65,6 +71,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9141602B2ECDCD2100383D79 /* UIOnboarding in Frameworks */,
+				914160BB2ECDEF0300383D79 /* UIOnboarding in Frameworks */,
+				914160B52ECDE66000383D79 /* UIOnboarding in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -125,6 +134,9 @@
 			);
 			name = FocusNotes;
 			packageProductDependencies = (
+				9141602A2ECDCD2100383D79 /* UIOnboarding */,
+				914160B42ECDE66000383D79 /* UIOnboarding */,
+				914160BA2ECDEF0300383D79 /* UIOnboarding */,
 			);
 			productName = FocusNotes;
 			productReference = 91AFD86D2EBA002800FF843D /* FocusNotes.app */;
@@ -187,6 +199,7 @@
 				TargetAttributes = {
 					91AFD86C2EBA002800FF843D = {
 						CreatedOnToolsVersion = 16.2;
+						LastSwiftMigration = 1620;
 					};
 					91AFD8872EBA002A00FF843D = {
 						CreatedOnToolsVersion = 16.2;
@@ -204,9 +217,13 @@
 			knownRegions = (
 				en,
 				Base,
+				"zh-Hans",
 			);
 			mainGroup = 91AFD8642EBA002800FF843D;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				914160B92ECDEF0300383D79 /* XCLocalSwiftPackageReference "../../UIOnboarding" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 91AFD86E2EBA002800FF843D /* Products */;
 			projectDirPath = "";
@@ -286,6 +303,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 4YKFFA7W42;
@@ -304,6 +322,9 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.bee.FocusNotes;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "FocusNotes/FocusNotes-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -313,6 +334,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 4YKFFA7W42;
@@ -331,6 +353,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.bee.FocusNotes;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "FocusNotes/FocusNotes-Bridging-Header.h";
+				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -340,6 +364,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -393,6 +418,7 @@
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
+				SWIFT_OBJC_BRIDGING_HEADER = "FocusNotes/FocusNotes-Bridging-Header.h";
 			};
 			name = Debug;
 		};
@@ -401,6 +427,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -447,6 +474,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
+				SWIFT_OBJC_BRIDGING_HEADER = "FocusNotes/FocusNotes-Bridging-Header.h";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -559,6 +587,28 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCLocalSwiftPackageReference section */
+		914160B92ECDEF0300383D79 /* XCLocalSwiftPackageReference "../../UIOnboarding" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = ../../UIOnboarding;
+		};
+/* End XCLocalSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		9141602A2ECDCD2100383D79 /* UIOnboarding */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = UIOnboarding;
+		};
+		914160B42ECDE66000383D79 /* UIOnboarding */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = UIOnboarding;
+		};
+		914160BA2ECDEF0300383D79 /* UIOnboarding */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = UIOnboarding;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 91AFD8652EBA002800FF843D /* Project object */;
 }

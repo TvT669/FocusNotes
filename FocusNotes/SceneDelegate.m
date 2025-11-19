@@ -6,6 +6,8 @@
 //
 
 #import "SceneDelegate.h"
+#import "FocusNotes-Swift.h" // 调用 Swift 的 OnboardingManager
+#import <UIKit/UIKit.h>
 
 @interface SceneDelegate ()
 
@@ -15,7 +17,22 @@
 
 
 - (void)scene:(UIScene *)scene willConnectToSession:(UISceneSession *)session options:(UISceneConnectionOptions *)connectionOptions {
-    
+    if (![scene isKindOfClass:[UIWindowScene class]]) { return; }
+    UIWindowScene *windowScene = (UIWindowScene *)scene;
+    self.window = [[UIWindow alloc] initWithWindowScene:windowScene];
+
+    BOOL hasCompletedOnboarding = [[NSUserDefaults standardUserDefaults] boolForKey:@"hasCompletedOnboarding"];
+    if (!hasCompletedOnboarding) {
+        // 启动时直接显示欢迎页作为根控制器
+        UIViewController *onboarding = [OnboardingManager createOnboardingViewControllerWithDelegate:self];
+        self.window.rootViewController = onboarding;
+        [self.window makeKeyAndVisible];
+    } else {
+        // 直接进入主界面（Storyboard 初始控制器）
+        UIViewController *main = [self createMainRootController];
+        self.window.rootViewController = main;
+        [self.window makeKeyAndVisible];
+    }
 }
 
 
@@ -51,5 +68,29 @@
     // to restore the scene back to its current state.
 }
 
+
+#pragma mark - Onboarding 回调 & Root 切换
+
+// 注意：无需在头文件声明 Swift 协议；只要方法签名匹配即可被调用
+- (void)didFinishOnboarding:(UIViewController *)onboardingViewController {
+    // 标记完成
+    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"hasCompletedOnboarding"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+
+    // 切换到主界面（淡入过渡）
+    UIViewController *main = [self createMainRootController];
+    UIWindow *window = self.window;
+    [UIView transitionWithView:window
+                      duration:0.25
+                       options:UIViewAnimationOptionTransitionCrossDissolve
+                    animations:^{ window.rootViewController = main; }
+                    completion:nil];
+}
+
+- (UIViewController *)createMainRootController {
+    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    UIViewController *vc = [sb instantiateInitialViewController];
+    return vc ?: [UIViewController new];
+}
 
 @end

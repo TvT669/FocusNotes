@@ -8,6 +8,8 @@
 #import "TimeVC.h"
 #import "NotesTableViewController.h"
 #import "PomodoroTimerView.h"
+#import "FocusNotes-Swift.h"
+
 
 @interface TimeVC ()
 @property (nonatomic, assign) NSInteger totalSeconds;      // 总秒数（25 * 60）
@@ -24,8 +26,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     // Do any additional setup after loading the view.
-    self.totalSeconds = 1 * 5;     // 25分钟
+    self.totalSeconds = 25 * 60;     // 25分钟
     self.remainingSeconds = self.totalSeconds;
     
     // 构建并添加番茄钟视图
@@ -150,6 +153,36 @@
         [alert addAction:cancelAction];
         [self presentViewController:alert animated:YES completion:nil];
     }
+}
+// 1. 添加 viewDidAppear 来检查是否需要显示欢迎页
+-(void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    
+    // 检查 UserDefaults 标记
+    BOOL hasCompletedOnboarding = [[NSUserDefaults standardUserDefaults] boolForKey:@"hasCompletedOnboarding"];
+    
+    if (!hasCompletedOnboarding) {
+        [self showOnboarding];
+    }
+}
+
+// 2. 显示欢迎页的方法
+-(void)showOnboarding {
+    // 调用 Swift 的静态方法
+    UIViewController *onboardingVC = [OnboardingManager createOnboardingViewControllerWithDelegate:self];
+    onboardingVC.modalPresentationStyle = UIModalPresentationFullScreen;
+    [self presentViewController:onboardingVC animated:YES completion:nil];
+}
+// 3. 实现代理方法：点击“开启专注之旅”后调用
+// 注意：由于 UIOnboardingViewControllerDelegate 是 Swift 协议，OC 无法直接声明实现，
+// 但运行时只要方法签名匹配即可被调用。
+- (void)didFinishOnboarding:(UIViewController *)onboardingViewController {
+    // 标记为已完成，下次不再显示
+    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"hasCompletedOnboarding"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    
+    // 关闭页面
+    [onboardingViewController dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end

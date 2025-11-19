@@ -1,0 +1,20 @@
+//
+//  Localizable.strings
+//  FocusNotes
+//
+//  Created by 珠穆朗玛小蜜蜂 on 2025/11/19.
+//
+
+"WELCOME_TITLE_LINE1" = "欢迎";
+"WELCOME_TITLE_LINE2" = "FocusNotes";
+"FEATURE_FOCUS_TITLE" = "专注计时";
+"FEATURE_FOCUS_DESC" = "番茄工作法，提高效率";
+"FEATURE_NOTES_TITLE" = "快速笔记";
+"FEATURE_NOTES_DESC" = "快速记录你的想法";
+"FEATURE_STATS_TITLE" = "统计";
+"FEATURE_STATS_DESC" = "查看每日完成情况";
+"NOTICE_TEXT" = "我们不会收集任何个人数据。";
+"NOTICE_LINK_TITLE" = "隐私政策";
+"START_BUTTON_TITLE" = "开始使用";
+
+

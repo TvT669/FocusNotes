@@ -1,0 +1,45 @@
+
+/* Class = "UITabBarItem"; title = "记录"; ObjectID = "84i-ji-5Ig"; */
+"84i-ji-5Ig.title" = "记录";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "DX6-hP-Oy5"; */
+"DX6-hP-Oy5.text" = "Label";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "NRm-cO-abe"; */
+"NRm-cO-abe.text" = "Label";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "TSF-4h-9pW"; */
+"TSF-4h-9pW.text" = "Label";
+
+/* Class = "UIButton"; configuration.title = "重置"; ObjectID = "bH1-UW-m8u"; */
+"bH1-UW-m8u.configuration.title" = "重置";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "bH1-UW-m8u"; */
+"bH1-UW-m8u.normalTitle" = "Button";
+
+/* Class = "UIButton"; configuration.title = "暂停"; ObjectID = "cJi-Pb-D17"; */
+"cJi-Pb-D17.configuration.title" = "暂停";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "cJi-Pb-D17"; */
+"cJi-Pb-D17.normalTitle" = "Button";
+
+/* Class = "UITextField"; placeholder = "请输入标题..."; ObjectID = "fYg-cl-E6X"; */
+"fYg-cl-E6X.placeholder" = "请输入标题...";
+
+/* Class = "UILabel"; text = "25 :  00"; ObjectID = "gtx-D9-lGr"; */
+"gtx-D9-lGr.text" = "25 :  00";
+
+/* Class = "UINavigationController"; title = "计时"; ObjectID = "mnT-N9-bpb"; */
+"mnT-N9-bpb.title" = "计时";
+
+/* Class = "UITabBarItem"; title = "专注"; ObjectID = "mvP-lF-rFZ"; */
+"mvP-lF-rFZ.title" = "专注";
+
+/* Class = "UINavigationController"; title = "笔记"; ObjectID = "plR-5S-8la"; */
+"plR-5S-8la.title" = "笔记";
+
+/* Class = "UIButton"; configuration.title = "开始"; ObjectID = "wIu-eA-G5E"; */
+"wIu-eA-G5E.configuration.title" = "开始";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "wIu-eA-G5E"; */
+"wIu-eA-G5E.normalTitle" = "Button";

@@ -1,0 +1,20 @@
+//
+//  Localizable.strings
+//  FocusNotes
+//
+//  Created by 珠穆朗玛小蜜蜂 on 2025/11/19.
+//
+
+"WELCOME_TITLE_LINE1" = "Welcome";
+"WELCOME_TITLE_LINE2" = "FocusNotes";
+"FEATURE_FOCUS_TITLE" = "Focus Timer";
+"FEATURE_FOCUS_DESC" = "Pomodoro boosts productivity";
+"FEATURE_NOTES_TITLE" = "Quick Notes";
+"FEATURE_NOTES_DESC" = "Capture your ideas fast";
+"FEATURE_STATS_TITLE" = "Stats";
+"FEATURE_STATS_DESC" = "Track daily progress";
+"NOTICE_TEXT" = "We do not collect personal data.";
+"NOTICE_LINK_TITLE" = "Privacy Policy";
+"START_BUTTON_TITLE" = "Get Started";
+
+
