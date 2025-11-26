@@ -6,10 +6,10 @@
 //
 
 #import "SceneDelegate.h"
-#import "FocusNotes-Swift.h" // 调用 Swift 的 OnboardingManager
+#import "CustomOnboardingViewController.h" // 引入自定义欢迎页
 #import <UIKit/UIKit.h>
 
-@interface SceneDelegate ()
+@interface SceneDelegate () <CustomOnboardingViewControllerDelegate> // 遵守自定义代理协议
 
 @end
 
@@ -23,9 +23,10 @@
 
     BOOL hasCompletedOnboarding = [[NSUserDefaults standardUserDefaults] boolForKey:@"hasCompletedOnboarding"];
     if (!hasCompletedOnboarding) {
-        // 启动时直接显示欢迎页作为根控制器
-        UIViewController *onboarding = [OnboardingManager createOnboardingViewControllerWithDelegate:self];
-        self.window.rootViewController = onboarding;
+        // 启动时直接显示自定义欢迎页作为根控制器
+        CustomOnboardingViewController *onboardingVC = [[CustomOnboardingViewController alloc] init];
+        onboardingVC.delegate = self; // 设置代理
+        self.window.rootViewController = onboardingVC;
         [self.window makeKeyAndVisible];
     } else {
         // 直接进入主界面（Storyboard 初始控制器）
@@ -69,10 +70,9 @@
 }
 
 
-#pragma mark - Onboarding 回调 & Root 切换
+#pragma mark - CustomOnboardingViewControllerDelegate
 
-// 注意：无需在头文件声明 Swift 协议；只要方法签名匹配即可被调用
-- (void)didFinishOnboarding:(UIViewController *)onboardingViewController {
+- (void)didTapStartButtonInOnboardingViewController:(CustomOnboardingViewController *)viewController {
     // 标记完成
     [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"hasCompletedOnboarding"];
     [[NSUserDefaults standardUserDefaults] synchronize];

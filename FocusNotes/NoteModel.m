@@ -31,14 +31,14 @@
 
 -(NSArray *)titles{
     if(_titles == nil){
-        _titles = @[@"第一篇笔记",@"学习计划",@"购物清单"];
+        _titles = @[@"第一篇笔记"];
         
     }
     return _titles;
 }
 -(NSArray *)contents{
     if(_contents == nil){
-        _contents = @[@"这是我的第一篇笔记内容",@"今天要学习 iOS 开发",@"牛奶、面包、鸡蛋"];
+        _contents = @[@"写下你的第一篇笔记内容"];
         
     }
     return _contents;
@@ -46,9 +46,8 @@
 -(NSArray *)dates{
     if(_dates == nil){
         _dates = @[
-                [self dateFromString:@"2025年5月28日"],
-                [self dateFromString:@"2025年6月8日"],
-                [self dateFromString:@"2025年7月14日"]
+                [self dateFromString:@"2025年5月28日"]
+                
            ];
         
     }

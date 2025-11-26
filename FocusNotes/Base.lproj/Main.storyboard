@@ -8,10 +8,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Tab Bar Controller-->
+        <!--Custom Tab Bar Controller-->
         <scene sceneID="Jak-U6-MaN">
             <objects>
-                <tabBarController id="DA4-Vh-ZM7" sceneMemberID="viewController">
+                <tabBarController id="DA4-Vh-ZM7" customClass="CustomTabBarController" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="7jG-0X-WgO"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="db2-7T-lZ5">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="49"/>
@@ -35,40 +35,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wIu-eA-G5E">
-                                <rect key="frame" x="286" y="605" width="58" height="35"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="warm_bokeh_bg" translatesAutoresizingMaskIntoConstraints="NO" id="UOR-rb-J5F">
+                                <rect key="frame" x="0.0" y="-25" width="413" height="927"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="gray" title="开始"/>
-                                <connections>
-                                    <action selector="startTimer:" destination="BYZ-38-t0r" eventType="touchUpInside" id="YhN-ln-e7v"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cJi-Pb-D17">
-                                <rect key="frame" x="167" y="541" width="58" height="35"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="gray" title="暂停"/>
-                                <connections>
-                                    <action selector="pauseTimer:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ks5-LQ-Nwb"/>
-                                </connections>
-                            </button>
+                            </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="25 :  00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gtx-D9-lGr">
-                                <rect key="frame" x="41" y="226" width="280" height="76"/>
+                                <rect key="frame" x="16" y="184" width="280" height="76"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="36"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bH1-UW-m8u">
-                                <rect key="frame" x="41" y="478" width="58" height="35"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="gray" title="重置"/>
-                                <connections>
-                                    <action selector="resetTimer:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Dcw-sO-DCc"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -80,7 +57,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="611" y="-559"/>
+            <point key="canvasLocation" x="608.39694656488552" y="-559.15492957746483"/>
         </scene>
         <!--Notes Table View Controller-->
         <scene sceneID="MqE-LE-V5S">
@@ -194,7 +171,7 @@
         <scene sceneID="D6E-9R-ral">
             <objects>
                 <navigationController title="计时" automaticallyAdjustsScrollViewInsets="NO" id="mnT-N9-bpb" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="专注" image="sun.and.horizon.fill" catalog="system" selectedImage="sun.horizon" id="mvP-lF-rFZ"/>
+                    <tabBarItem key="tabBarItem" title="专注" image="sun.and.horizon" catalog="system" selectedImage="sun.horizon.fill" id="mvP-lF-rFZ" colorLabel="IBBuiltInLabel-Red"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="qOq-sj-xsC">
                         <rect key="frame" x="0.0" y="59" width="393" height="44"/>
@@ -213,7 +190,7 @@
         <scene sceneID="16w-hJ-sSn">
             <objects>
                 <navigationController title="笔记" automaticallyAdjustsScrollViewInsets="NO" id="plR-5S-8la" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="记录" image="list.bullet.rectangle.portrait.fill" catalog="system" selectedImage="list.bullet.clipboard" id="84i-ji-5Ig"/>
+                    <tabBarItem key="tabBarItem" title="记录" image="list.bullet.clipboard" catalog="system" selectedImage="list.bullet.clipboard.fill" id="84i-ji-5Ig"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="5Fz-Iz-oge">
                         <rect key="frame" x="0.0" y="59" width="393" height="44"/>
@@ -231,9 +208,10 @@
     </scenes>
     <resources>
         <image name="list.bullet.clipboard" catalog="system" width="98" height="128"/>
-        <image name="list.bullet.rectangle.portrait.fill" catalog="system" width="115" height="128"/>
-        <image name="sun.and.horizon.fill" catalog="system" width="128" height="79"/>
-        <image name="sun.horizon" catalog="system" width="128" height="79"/>
+        <image name="list.bullet.clipboard.fill" catalog="system" width="98" height="128"/>
+        <image name="sun.and.horizon" catalog="system" width="128" height="79"/>
+        <image name="sun.horizon.fill" catalog="system" width="128" height="79"/>
+        <image name="warm_bokeh_bg" width="484" height="1024"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
