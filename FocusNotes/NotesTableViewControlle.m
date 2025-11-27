@@ -11,11 +11,14 @@
 #import "NoteTableViewCell.h"
 #import "NoteDetailViewController.h"
 
+#define kWarmCoffeeColor [UIColor colorWithRed:74/255.0 green:64/255.0 blue:58/255.0 alpha:1.0]
+#define kWarmCoralColor [UIColor colorWithRed:255/255.0 green:140/255.0 blue:148/255.0 alpha:1.0]
+
 @interface NotesTableViewController ()
-@property (strong, nonatomic) IBOutlet UITableView *tableView;
+//@property (strong, nonatomic) IBOutlet UITableView *tableView;
 //@property(strong,nonatomic) NSMutableArray *notes;
-
-
+// 便利贴颜色数组
+@property (nonatomic, strong) NSArray<UIColor *> *noteColors;
 
 @end
 @implementation NotesTableViewController
@@ -23,15 +26,70 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.tableView.rowHeight = 80.0;
-       // 设置导航栏
-    self.title = @"笔记";
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]
-           initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
-           target:self
-           action:@selector(addNewNote)];
-    //self.notes = [[[NoteModel alloc]init]notes];
+    
+    // --- 1. 设置背景图 ---
+    // 创建一个 UIImageView 来显示背景图
+    UIImageView *bgImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"warm_bokeh_bg"]];
+    bgImageView.contentMode = UIViewContentModeScaleAspectFill;
+    // 将背景图设置为 TableView 的背景视图
+    self.tableView.backgroundView = bgImageView;
+    self.tableView.backgroundColor = [UIColor clearColor]; // 确保 TableView 本身透明
+
+    
+    // --- 2. 配置 TableView ---
+    // 移除固定行高，让 Auto Layout 自动计算卡片高度
+    // self.tableView.rowHeight = 80.0;
+    self.tableView.rowHeight = UITableViewAutomaticDimension;
+    self.tableView.estimatedRowHeight = 100; // 给一个估算值
+    
+    // 去掉分割线
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    
+    // 增加一点顶部和底部的内边距，让第一个和最后一个 Cell 不贴边
+    self.tableView.contentInset = UIEdgeInsetsMake(10, 0, 20, 0);
+
+    // 如果你的 Cell 原来是在 Storyboard 里定义的，现在可能需要用代码注册一下
+     [self.tableView registerClass:[NoteTableViewCell class] forCellReuseIdentifier:@"NoteCell"];
+
+    
+    // --- 3. 配置导航栏 ---
+    [self setupNavigationBar];
+
+    
+    // --- 4. 初始化数据 ---
+    [self setupData];
+    
     [self loadNotesFromUserDefaults];
+}
+
+- (void)setupNavigationBar {
+    self.title = @"笔记";
+    // 设置标题属性 (深咖啡色圆体字)
+    self.navigationController.navigationBar.titleTextAttributes = @{
+        NSForegroundColorAttributeName: kWarmCoffeeColor,
+        // 如果能获取到圆体字最好，否则用系统粗体
+        NSFontAttributeName: [UIFont systemFontOfSize:18 weight:UIFontWeightBold]
+    };
+
+    // 设置右侧加号按钮，并染成珊瑚色
+    UIBarButtonItem *addBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addNewNote)];
+    addBtn.tintColor = kWarmCoralColor;
+    self.navigationItem.rightBarButtonItem = addBtn;
+    
+    // 可选：设置导航栏背景透明
+    // [self.navigationController.navigationBar setBackgroundImage:[UIImage new] forBarMetrics:UIBarMetricsDefault];
+    // self.navigationController.navigationBar.shadowImage = [UIImage new];
+    // self.navigationController.navigationBar.translucent = YES;
+}
+
+- (void)setupData {
+    // 初始化便利贴颜色数组 (柔和的黄、绿、粉、米白)
+    self.noteColors = @[
+        [UIColor colorWithRed:255/255.0 green:245/255.0 blue:208/255.0 alpha:1.0], // 黄
+        [UIColor colorWithRed:217/255.0 green:240/255.0 blue:211/255.0 alpha:1.0], // 绿
+        [UIColor colorWithRed:250/255.0 green:212/255.0 blue:212/255.0 alpha:1.0], // 粉
+        [UIColor colorWithRed:253/255.0 green:246/255.0 blue:232/255.0 alpha:1.0]  // 米白
+    ];
 }
 
 - (void)addNewNote {
@@ -57,9 +115,18 @@
     //return self.titles.count;
 }
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    NoteTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"NoteCell"];
-    [cell configCell:[self.notes objectAtIndex:indexPath.row]];
-    return cell;
+    NoteTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"NoteCell" forIndexPath:indexPath];
+        
+        // 获取笔记模型
+        NoteModel *note = self.notes[indexPath.row];
+        
+        // 循环获取背景色 (使用取模运算符 %)
+        UIColor *bgColor = self.noteColors[indexPath.row % self.noteColors.count];
+        
+        // 使用新的配置方法
+        [cell configCell:note backgroundColor:bgColor];
+        
+        return cell;
     
 }
 #pragma mark - Table view delegate

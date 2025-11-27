@@ -98,11 +98,6 @@
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
-                                <connections>
-                                    <outlet property="content" destination="TSF-4h-9pW" id="4I4-ng-WsS"/>
-                                    <outlet property="date" destination="NRm-cO-abe" id="q2T-iZ-D4O"/>
-                                    <outlet property="title" destination="DX6-hP-Oy5" id="57R-ko-wkb"/>
-                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>

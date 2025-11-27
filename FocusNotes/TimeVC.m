@@ -8,6 +8,7 @@
 #import "TimeVC.h"
 #import "NotesTableViewController.h"
 #import "PomodoroTimerView.h"
+#import "TimeSelectionViewController.h"
 // 假设你已经导入了 Swift 头文件 (如果需要)
 // #import "FocusNotes-Swift.h"
 
@@ -41,7 +42,7 @@
     // 1. 设置背景色
     self.view.backgroundColor = kWarmBeigeColor;
     self.timeLabel.hidden = YES;
-    self.totalSeconds = 1 * 6;
+    self.totalSeconds = 25 * 60;
     self.remainingSeconds = self.totalSeconds;
     
     // 2. 构建 UI
@@ -67,6 +68,11 @@ typedef NS_ENUM(NSInteger, TimerState) {
     // --- 1. 添加番茄钟视图 ---
     self.timerView = [[PomodoroTimerView alloc] initWithFrame:CGRectZero];
     self.timerView.translatesAutoresizingMaskIntoConstraints = NO;
+    // 开启交互并添加点击手势
+    self.timerView.userInteractionEnabled = YES;
+    UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(timerViewTapped)];
+    [self.timerView addGestureRecognizer:tapGesture];
+    
     [self.view addSubview:self.timerView];
     
     // --- 2. 创建按钮 ---
@@ -243,6 +249,41 @@ typedef NS_ENUM(NSInteger, TimerState) {
 
 - (void)updateTimerDisplay {
     [self.timerView updateTimeRemaining:self.remainingSeconds];
+}
+
+// 处理 TimerView 点击事件
+- (void)timerViewTapped {
+    // 如果计时器正在运行，不允许修改时间（或者你可以选择暂停并修改）
+    if (self.timer) {
+        return;
+    }
+    
+    TimeSelectionViewController *selectionVC = [[TimeSelectionViewController alloc] init];
+    
+    // 设置 sheet 样式 (iOS 15+)
+    if (@available(iOS 15.0, *)) {
+        if (selectionVC.sheetPresentationController) {
+            selectionVC.sheetPresentationController.detents = @[UISheetPresentationControllerDetent.mediumDetent];
+            selectionVC.sheetPresentationController.prefersGrabberVisible = YES;
+        }
+    }
+    
+    __weak typeof(self) weakSelf = self;
+    selectionVC.timeSelectedBlock = ^(NSInteger seconds) {
+        [weakSelf updateTimerWithSeconds:seconds];
+    };
+    
+    [self presentViewController:selectionVC animated:YES completion:nil];
+}
+
+// 更新计时器时间
+- (void)updateTimerWithSeconds:(NSInteger)seconds {
+    self.totalSeconds = seconds;
+    self.remainingSeconds = seconds;
+    [self.timerView configureWithTotalTime:self.totalSeconds];
+    [self updateTimerDisplay];
+    // 重置按钮状态
+    [self updateButtonStatesFor:TimerStateStopped];
 }
 
 // 新的 Action 方法

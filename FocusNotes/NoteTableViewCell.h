@@ -11,11 +11,13 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface NoteTableViewCell : UITableViewCell
+/**
 @property (weak, nonatomic) IBOutlet UILabel *content;
 @property (weak, nonatomic) IBOutlet UILabel *title;
 @property (weak, nonatomic) IBOutlet UILabel *date;
+ */
 
--(void)configCell:(NoteModel *)note;
+-(void)configCell:(NoteModel *)note backgroundColor:(UIColor *)bgColor;;
 
 @end
 
