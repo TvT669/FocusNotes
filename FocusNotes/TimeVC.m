@@ -9,8 +9,8 @@
 #import "NotesTableViewController.h"
 #import "PomodoroTimerView.h"
 #import "TimeSelectionViewController.h"
-// 假设你已经导入了 Swift 头文件 (如果需要)
-// #import "FocusNotes-Swift.h"
+#import "FocusNotes-Swift.h"
+
 
 // --- 定义宏：方便使用温馨风格的颜色 ---
 #define kWarmBeigeColor [UIColor colorWithRed:253/255.0 green:251/255.0 blue:247/255.0 alpha:1.0]
@@ -39,8 +39,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    // 1. 设置背景色
-    self.view.backgroundColor = kWarmBeigeColor;
+    // 1. 设置背景图
+    UIImageView *bgImageView = [[UIImageView alloc] initWithFrame:self.view.bounds];
+    bgImageView.image = [UIImage imageNamed:@"warm_bokeh_bg"];
+    bgImageView.contentMode = UIViewContentModeScaleAspectFill;
+    bgImageView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    [self.view insertSubview:bgImageView atIndex:0]; // 插入到最底层
+    
     self.timeLabel.hidden = YES;
     self.totalSeconds = 25 * 60;
     self.remainingSeconds = self.totalSeconds;
@@ -295,6 +300,10 @@ typedef NS_ENUM(NSInteger, TimerState) {
                                                     userInfo:nil
                                                      repeats:YES];
         [self updateButtonStatesFor:TimerStateRunning];
+        
+        // 启动灵动岛
+        NSDate *endTime = [NSDate dateWithTimeIntervalSinceNow:self.remainingSeconds];
+        [[LiveActivityManager shared] startTimerWithEndTime:endTime];
     }
 }
 
@@ -302,6 +311,9 @@ typedef NS_ENUM(NSInteger, TimerState) {
     [self.timer invalidate];
     self.timer = nil;
     [self updateButtonStatesFor:TimerStatePaused];
+    
+    // 暂停时结束灵动岛
+    [[LiveActivityManager shared] stopTimer];
 }
 
 - (void)resetTimerTapped:(id)sender {
@@ -310,6 +322,9 @@ typedef NS_ENUM(NSInteger, TimerState) {
     self.remainingSeconds = self.totalSeconds;
     [self updateTimerDisplay];
     [self updateButtonStatesFor:TimerStateStopped];
+    
+    // 重置时结束灵动岛
+    [[LiveActivityManager shared] stopTimer];
 }
 
 // timerTick 方法保持不变
@@ -324,6 +339,9 @@ typedef NS_ENUM(NSInteger, TimerState) {
         [self.timer invalidate];
         self.timer = nil;
         [self updateButtonStatesFor:TimerStateFinished]; // 计时结束回到停止状态
+        
+        // 计时结束，关闭灵动岛
+        [[LiveActivityManager shared] stopTimer];
 
         // 弹出提示框的代码保持不变...
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"🍅 专注完成！" message:@"恭喜你完成了一个番茄钟！要不要记录一下学习内容？" preferredStyle:UIAlertControllerStyleAlert];
