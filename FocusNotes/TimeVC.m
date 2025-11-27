@@ -10,6 +10,8 @@
 #import "PomodoroTimerView.h"
 #import "TimeSelectionViewController.h"
 #import "FocusNotes-Swift.h"
+#import <AVFoundation/AVFoundation.h>
+#import <UserNotifications/UserNotifications.h>
 
 
 // --- 定义宏：方便使用温馨风格的颜色 ---
@@ -32,6 +34,8 @@
 // 用于控制按钮区域的 StackView
 @property (nonatomic, strong) UIStackView *buttonsStackView;
 
+@property (nonatomic, strong) AVAudioPlayer *audioPlayer;
+
 @end
 
 @implementation TimeVC
@@ -47,7 +51,7 @@
     [self.view insertSubview:bgImageView atIndex:0]; // 插入到最底层
     
     self.timeLabel.hidden = YES;
-    self.totalSeconds = 25 * 60;
+    self.totalSeconds = 1 * 6;
     self.remainingSeconds = self.totalSeconds;
     
     // 2. 构建 UI
@@ -57,6 +61,15 @@
     [self.timerView configureWithTotalTime:self.totalSeconds];
     [self updateTimerDisplay];
     [self updateButtonStatesFor:TimerStateStopped]; // 初始状态
+    
+    // 4. 请求通知权限
+    UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
+    [center requestAuthorizationWithOptions:(UNAuthorizationOptionAlert + UNAuthorizationOptionSound)
+                          completionHandler:^(BOOL granted, NSError * _Nullable error) {
+                              if (!granted) {
+                                  NSLog(@"Notification permission denied");
+                              }
+                          }];
 }
 
 // 定义计时器状态枚举，方便管理按钮显示
@@ -304,6 +317,9 @@ typedef NS_ENUM(NSInteger, TimerState) {
         // 启动灵动岛
         NSDate *endTime = [NSDate dateWithTimeIntervalSinceNow:self.remainingSeconds];
         [[LiveActivityManager shared] startTimerWithEndTime:endTime];
+        
+        // 注册本地通知 (后台播放提示音的关键)
+        [self scheduleLocalNotification];
     }
 }
 
@@ -314,6 +330,9 @@ typedef NS_ENUM(NSInteger, TimerState) {
     
     // 暂停时结束灵动岛
     [[LiveActivityManager shared] stopTimer];
+    
+    // 取消本地通知
+    [[UNUserNotificationCenter currentNotificationCenter] removePendingNotificationRequestsWithIdentifiers:@[@"TimerDone"]];
 }
 
 - (void)resetTimerTapped:(id)sender {
@@ -325,6 +344,9 @@ typedef NS_ENUM(NSInteger, TimerState) {
     
     // 重置时结束灵动岛
     [[LiveActivityManager shared] stopTimer];
+    
+    // 取消本地通知
+    [[UNUserNotificationCenter currentNotificationCenter] removePendingNotificationRequestsWithIdentifiers:@[@"TimerDone"]];
 }
 
 // timerTick 方法保持不变
@@ -342,9 +364,12 @@ typedef NS_ENUM(NSInteger, TimerState) {
         
         // 计时结束，关闭灵动岛
         [[LiveActivityManager shared] stopTimer];
+        
+        // 播放提示音
+        [self playNotificationSound];
 
         // 弹出提示框的代码保持不变...
-        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"🍅 专注完成！" message:@"恭喜你完成了一个番茄钟！要不要记录一下学习内容？" preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"🍅 专注完成！" message:@"干得漂亮！快记下你的收获吧～(ﾉ≧∀≦)ﾉ" preferredStyle:UIAlertControllerStyleAlert];
         UIAlertAction *noteAction = [UIAlertAction
                                             actionWithTitle:@"记录笔记"
                                             style:UIAlertActionStyleDefault
@@ -383,5 +408,44 @@ typedef NS_ENUM(NSInteger, TimerState) {
     }
 }
 
+// 注册本地通知
+- (void)scheduleLocalNotification {
+    UNMutableNotificationContent *content = [[UNMutableNotificationContent alloc] init];
+    content.title = @"🌱 时间到咯～";
+    content.body = @"🎉 恭喜你成功完成本次计时～干得漂亮！(๑•̀ㅂ•́)و✧";
+    content.sound = [UNNotificationSound soundNamed:@"notification.caf"];
+    
+    UNTimeIntervalNotificationTrigger *trigger = [UNTimeIntervalNotificationTrigger triggerWithTimeInterval:self.remainingSeconds repeats:NO];
+    
+    UNNotificationRequest *request = [UNNotificationRequest requestWithIdentifier:@"TimerDone" content:content trigger:trigger];
+    
+    [[UNUserNotificationCenter currentNotificationCenter] addNotificationRequest:request withCompletionHandler:^(NSError * _Nullable error) {
+        if (error) {
+            NSLog(@"Error scheduling notification: %@", error);
+        }
+    }];
+}
+
+// 播放提示音
+- (void)playNotificationSound {
+    NSString *soundPath = [[NSBundle mainBundle] pathForResource:@"notification" ofType:@"caf"];
+    if (soundPath) {
+        NSURL *soundURL = [NSURL fileURLWithPath:soundPath];
+        NSError *error = nil;
+        // 配置 AudioSession 以确保在静音模式下也能播放（可选，视需求而定）
+        //[[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:nil];
+        //[[AVAudioSession sharedInstance] setActive:YES error:nil];
+        
+        self.audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:soundURL error:&error];
+        if (!error) {
+            [self.audioPlayer prepareToPlay];
+            [self.audioPlayer play];
+        } else {
+            NSLog(@"Error initializing audio player: %@", error.localizedDescription);
+        }
+    } else {
+        NSLog(@"Sound file not found");
+    }
+}
 
 @end

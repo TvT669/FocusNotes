@@ -7,9 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		9141602B2ECDCD2100383D79 /* UIOnboarding in Frameworks */ = {isa = PBXBuildFile; productRef = 9141602A2ECDCD2100383D79 /* UIOnboarding */; };
-		914160B52ECDE66000383D79 /* UIOnboarding in Frameworks */ = {isa = PBXBuildFile; productRef = 914160B42ECDE66000383D79 /* UIOnboarding */; };
-		914160BB2ECDEF0300383D79 /* UIOnboarding in Frameworks */ = {isa = PBXBuildFile; productRef = 914160BA2ECDEF0300383D79 /* UIOnboarding */; };
 		91B905672ED8A5BD00FB6503 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91B905662ED8A5BD00FB6503 /* WidgetKit.framework */; };
 		91B905692ED8A5BD00FB6503 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91B905682ED8A5BD00FB6503 /* SwiftUI.framework */; };
 		91B9057A2ED8A5BF00FB6503 /* FocusTimerWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 91B905642ED8A5BD00FB6503 /* FocusTimerWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -121,9 +118,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9141602B2ECDCD2100383D79 /* UIOnboarding in Frameworks */,
-				914160BB2ECDEF0300383D79 /* UIOnboarding in Frameworks */,
-				914160B52ECDE66000383D79 /* UIOnboarding in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -207,9 +201,6 @@
 			);
 			name = FocusNotes;
 			packageProductDependencies = (
-				9141602A2ECDCD2100383D79 /* UIOnboarding */,
-				914160B42ECDE66000383D79 /* UIOnboarding */,
-				914160BA2ECDEF0300383D79 /* UIOnboarding */,
 			);
 			productName = FocusNotes;
 			productReference = 91AFD86D2EBA002800FF843D /* FocusNotes.app */;
@@ -321,7 +312,6 @@
 			mainGroup = 91AFD8642EBA002800FF843D;
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
-				914160B92ECDEF0300383D79 /* XCLocalSwiftPackageReference "../../UIOnboarding" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 91AFD86E2EBA002800FF843D /* Products */;
@@ -782,28 +772,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCLocalSwiftPackageReference section */
-		914160B92ECDEF0300383D79 /* XCLocalSwiftPackageReference "../../UIOnboarding" */ = {
-			isa = XCLocalSwiftPackageReference;
-			relativePath = ../../UIOnboarding;
-		};
-/* End XCLocalSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		9141602A2ECDCD2100383D79 /* UIOnboarding */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = UIOnboarding;
-		};
-		914160B42ECDE66000383D79 /* UIOnboarding */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = UIOnboarding;
-		};
-		914160BA2ECDEF0300383D79 /* UIOnboarding */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = UIOnboarding;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 91AFD8652EBA002800FF843D /* Project object */;
 }
