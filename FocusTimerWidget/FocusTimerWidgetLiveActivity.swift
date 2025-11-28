@@ -9,99 +9,154 @@ import ActivityKit
 import WidgetKit
 import SwiftUI
 
+// --- 定义主题颜色 ---
+fileprivate let coralPink = Color(red: 255/255, green: 140/255, blue: 148/255)
+fileprivate let offWhite = Color(red: 249/255, green: 243/255, blue: 234/255)
+
 struct FocusTimerWidgetLiveActivity: Widget {
     var body: some WidgetConfiguration {
         ActivityConfiguration(for: FocusTimerAttributes.self) { context in
             // --- 1. 锁屏界面 UI ---
-            VStack {
-                Text("专注中: \(context.attributes.timerName)")
-                    .font(.headline)
-                    .foregroundColor(.white)
+            HStack(alignment: .center, spacing: 16) {
+                // 左侧：倒计时
+                VStack(alignment: .leading, spacing: 4) {
+                    Text(context.state.endTime, style: .timer)
+                        .font(.system(size: 36, weight: .bold, design: .rounded))
+                        .foregroundColor(coralPink)
+                        .monospacedDigit()
+                }
                 
-                // style: .timer 是系统自动倒计时的关键，不需要每秒刷新
-                Text(context.state.endTime, style: .timer)
-                    .font(.system(size: 40, weight: .bold))
-                    .foregroundColor(Color(red: 255/255, green: 140/255, blue: 148/255)) // 珊瑚粉
+                Spacer()
+                
+                // 右侧：暖心语录
+                VStack(alignment: .trailing, spacing: 4) {
+                    Text("保持专注")
+                        .font(.subheadline)
+                        .fontWeight(.medium)
+                        .foregroundColor(Color(red: 74/255, green: 64/255, blue: 58/255))
+                    
+                    Text("种下希望")
+                        .font(.caption)
+                        .foregroundColor(.gray)
+                }
+                
+                // 装饰图标
+                Image(systemName: "sun.horizon.fill")
+                    .foregroundColor(coralPink.opacity(0.8))
+                    .font(.system(size: 20))
             }
-            .padding()
-            .activityBackgroundTint(Color(red: 74/255, green: 64/255, blue: 58/255)) // 咖啡色背景
+            .padding(.horizontal, 20)
+            .padding(.vertical, 16)
+            .activityBackgroundTint(offWhite)
             
         } dynamicIsland: { context in
             // --- 2. 灵动岛 UI ---
             DynamicIsland {
-                // A. 展开区域 (长按灵动岛)
+                // A. 展开区域 (长按灵动岛) - 暂时保持原样或后续开发
                 DynamicIslandExpandedRegion(.leading) {
-                    Image(systemName: "timer")
-                        .foregroundColor(Color(red: 255/255, green: 140/255, blue: 148/255))
-                        .font(.title)
+                    TomatoIconView()
+                        .frame(width: 30, height: 30)
                         .padding(.leading, 8)
                 }
                 DynamicIslandExpandedRegion(.trailing) {
                     Text(context.state.endTime, style: .timer)
                         .font(.title)
-                        .foregroundColor(Color(red: 255/255, green: 140/255, blue: 148/255))
+                        .foregroundColor(coralPink)
                         .monospacedDigit()
                         .padding(.trailing, 8)
                 }
                 DynamicIslandExpandedRegion(.bottom) {
-                    Text(context.attributes.timerName)
-                        .font(.caption)
-                        .foregroundColor(.secondary)
-                        .padding(.bottom, 8)
+                    // 这里可以放置设计稿中的插图和文字
+                    VStack {
+                        // 占位插图，实际需替换为 Image("your_illustration")
+                        Image(systemName: "book.fill")
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(height: 60)
+                            .foregroundColor(coralPink.opacity(0.6))
+                            .padding(.vertical, 8)
+                        
+                        Text("保持专注，种下希望")
+                            .font(.caption)
+                            .foregroundColor(Color(red: 74/255, green: 64/255, blue: 58/255))
+                    }
+                    .padding(.bottom, 8)
                 }
             } compactLeading: {
-                // B. 收起状态左侧
-                Image(systemName: "timer")
-                    .foregroundColor(Color(red: 255/255, green: 140/255, blue: 148/255))
+                // --- B. 收起状态左侧 (设计稿左图) ---
+                // 仅显示番茄图标
+                TomatoIconView()
+                    .frame(width: 22, height: 22)
             } compactTrailing: {
-                // C. 收起状态右侧 (倒计时)
+                // --- C. 收起状态右侧 (设计稿左图) ---
+                // 只显示倒计时数字，避免过宽
                 Text(context.state.endTime, style: .timer)
+                    .font(.system(size: 12, weight: .semibold))
                     .monospacedDigit()
-                    .frame(width: 45)
-                    .foregroundColor(Color(red: 255/255, green: 140/255, blue: 148/255))
+                    .foregroundColor(coralPink)
+                    .frame(maxWidth: 36) // 限制宽度
+                
             } minimal: {
-                // D. 最小化状态
-                Image(systemName: "timer")
-                    .foregroundColor(Color(red: 255/255, green: 140/255, blue: 148/255))
+                // --- D. 最小化状态 (设计稿右图) ---
+                TomatoIconView()
+                    .frame(width: 20, height: 20)
             }
         }
     }
 }
 
-// MARK: - Previews
+// MARK: - 自定义组件 View
+
+// 1. 番茄图标组件
+struct TomatoIconView: View {
+    var body: some View {
+        // 请确保 Assets.xcassets 中有名为 "tomato_icon_small" 的素材
+        // 并将其 "Render As" 设置为 "Template Image" 以便着色
+        Image("tomato_icon_small") // 如果没有素材，暂时用 Image(systemName: "timer") 代替调试
+            .resizable()
+            .aspectRatio(contentMode: .fit)
+            .foregroundColor(coralPink)
+    }
+}
+
+
+
+
+// MARK: - Previews (更新预览数据)
 
 extension FocusTimerAttributes {
     fileprivate static var preview: FocusTimerAttributes {
-        FocusTimerAttributes(timerName: "番茄专注")
+        FocusTimerAttributes()
     }
 }
 
 extension FocusTimerAttributes.ContentState {
+    // 创建一个模拟的运行中状态
     fileprivate static var timerRunning: FocusTimerAttributes.ContentState {
-        FocusTimerAttributes.ContentState(endTime: Date().addingTimeInterval(25 * 60))
+        let now = Date()
+        let duration: TimeInterval = 25 * 60 // 25分钟
+        return FocusTimerAttributes.ContentState(
+            endTime: now.addingTimeInterval(duration),
+            startTime: now,
+            totalDuration: duration
+        )
     }
 }
 
 #Preview("Lock Screen", as: .content, using: FocusTimerAttributes.preview) {
-   FocusTimerWidgetLiveActivity()
-} contentStates: {
-    FocusTimerAttributes.ContentState.timerRunning
-}
-
-#Preview("Dynamic Island Expanded", as: .dynamicIsland(.expanded), using: FocusTimerAttributes.preview) {
-   FocusTimerWidgetLiveActivity()
+    FocusTimerWidgetLiveActivity()
 } contentStates: {
     FocusTimerAttributes.ContentState.timerRunning
 }
 
 #Preview("Dynamic Island Compact", as: .dynamicIsland(.compact), using: FocusTimerAttributes.preview) {
-   FocusTimerWidgetLiveActivity()
+    FocusTimerWidgetLiveActivity()
 } contentStates: {
     FocusTimerAttributes.ContentState.timerRunning
 }
 
 #Preview("Dynamic Island Minimal", as: .dynamicIsland(.minimal), using: FocusTimerAttributes.preview) {
-   FocusTimerWidgetLiveActivity()
+    FocusTimerWidgetLiveActivity()
 } contentStates: {
     FocusTimerAttributes.ContentState.timerRunning
 }

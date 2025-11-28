@@ -26,8 +26,17 @@ import ActivityKit
         // 结束之前的活动（如果有）
         stopTimer()
         
-        let attributes = FocusTimerAttributes(timerName: "番茄专注")
-        let contentState = FocusTimerAttributes.ContentState(endTime: endTime)
+        let attributes = FocusTimerAttributes()
+        
+        // 计算总时长：结束时间 - 当前时间
+        let now = Date()
+        let duration = endTime.timeIntervalSince(now)
+        
+        let contentState = FocusTimerAttributes.ContentState(
+            endTime: endTime,
+            startTime: now,
+            totalDuration: duration
+        )
         
         do {
             let activity = try Activity.request(

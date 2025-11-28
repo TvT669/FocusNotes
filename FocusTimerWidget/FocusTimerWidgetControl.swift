@@ -38,21 +38,18 @@ extension FocusTimerWidgetControl {
 
     struct Provider: AppIntentControlValueProvider {
         func previewValue(configuration: TimerConfiguration) -> Value {
-            FocusTimerWidgetControl.Value(isRunning: false, name: configuration.timerName)
+            FocusTimerWidgetControl.Value(isRunning: false, name: "Timer")
         }
 
         func currentValue(configuration: TimerConfiguration) async throws -> Value {
             let isRunning = true // Check if the timer is running
-            return FocusTimerWidgetControl.Value(isRunning: isRunning, name: configuration.timerName)
+            return FocusTimerWidgetControl.Value(isRunning: isRunning, name: "Timer")
         }
     }
 }
 
 struct TimerConfiguration: ControlConfigurationIntent {
     static let title: LocalizedStringResource = "Timer Name Configuration"
-
-    @Parameter(title: "Timer Name", default: "Timer")
-    var timerName: String
 }
 
 struct StartTimerIntent: SetValueIntent {
