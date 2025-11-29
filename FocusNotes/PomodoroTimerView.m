@@ -126,7 +126,6 @@
     self.gradientLayer.frame = self.bounds;
 
     // 布局 Labels
-    CGFloat midX = CGRectGetMidX(self.bounds);
     CGFloat midY = CGRectGetMidY(self.bounds);
     
     // 时间标签居中略偏上

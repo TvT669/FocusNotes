@@ -51,7 +51,7 @@
     [self.view insertSubview:bgImageView atIndex:0]; // 插入到最底层
     
     self.timeLabel.hidden = YES;
-    self.totalSeconds = 1 * 6;
+    self.totalSeconds = 25 * 60;
     self.remainingSeconds = self.totalSeconds;
     
     // 2. 构建 UI
@@ -369,7 +369,7 @@ typedef NS_ENUM(NSInteger, TimerState) {
         [self playNotificationSound];
 
         // 弹出提示框的代码保持不变...
-        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"🍅 专注完成！" message:@"干得漂亮！快记下你的收获吧～(ﾉ≧∀≦)ﾉ" preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"🍅 专注完成！" message:@"太厉害啦！快记下你的收获吧～(ﾉ≧∀≦)ﾉ" preferredStyle:UIAlertControllerStyleAlert];
         UIAlertAction *noteAction = [UIAlertAction
                                             actionWithTitle:@"记录笔记"
                                             style:UIAlertActionStyleDefault

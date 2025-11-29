@@ -30,12 +30,12 @@ struct FocusTimerWidgetLiveActivity: Widget {
                 
                 // 右侧：暖心语录
                 VStack(alignment: .trailing, spacing: 4) {
-                    Text("保持专注")
+                    Text("小番茄在陪你")
                         .font(.subheadline)
                         .fontWeight(.medium)
                         .foregroundColor(Color(red: 74/255, green: 64/255, blue: 58/255))
                     
-                    Text("种下希望")
+                    Text("一起专注捏～")
                         .font(.caption)
                         .foregroundColor(.gray)
                 }
@@ -66,21 +66,18 @@ struct FocusTimerWidgetLiveActivity: Widget {
                         .padding(.trailing, 8)
                 }
                 DynamicIslandExpandedRegion(.bottom) {
-                    // 这里可以放置设计稿中的插图和文字
                     VStack {
-                        // 占位插图，实际需替换为 Image("your_illustration")
                         Image(systemName: "book.fill")
                             .resizable()
                             .aspectRatio(contentMode: .fit)
-                            .frame(height: 60)
+                            .frame(height: 20)
                             .foregroundColor(coralPink.opacity(0.6))
-                            .padding(.vertical, 8)
                         
-                        Text("保持专注，种下希望")
+                        Text("专注，是最温柔的坚持～")
                             .font(.caption)
                             .foregroundColor(Color(red: 74/255, green: 64/255, blue: 58/255))
                     }
-                    .padding(.bottom, 8)
+                    
                 }
             } compactLeading: {
                 // --- B. 收起状态左侧 (设计稿左图) ---
@@ -89,7 +86,7 @@ struct FocusTimerWidgetLiveActivity: Widget {
                     .frame(width: 22, height: 22)
             } compactTrailing: {
                 // --- C. 收起状态右侧 (设计稿左图) ---
-                // 只显示倒计时数字，避免过宽
+                // 只显示倒计时数字
                 Text(context.state.endTime, style: .timer)
                     .font(.system(size: 12, weight: .semibold))
                     .monospacedDigit()
@@ -110,9 +107,7 @@ struct FocusTimerWidgetLiveActivity: Widget {
 // 1. 番茄图标组件
 struct TomatoIconView: View {
     var body: some View {
-        // 请确保 Assets.xcassets 中有名为 "tomato_icon_small" 的素材
-        // 并将其 "Render As" 设置为 "Template Image" 以便着色
-        Image("tomato_icon_small") // 如果没有素材，暂时用 Image(systemName: "timer") 代替调试
+        Image("tomato_icon_small")
             .resizable()
             .aspectRatio(contentMode: .fit)
             .foregroundColor(coralPink)

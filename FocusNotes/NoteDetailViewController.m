@@ -53,7 +53,7 @@
         self.title = @"新建笔记";
         self.titleField.placeholder = @"标题";
         self.titleField.text = @""; // 保证为空，用户自行输入
-        self.noteText.text = @".";
+        self.noteText.text = @"";
     }
 }
 
