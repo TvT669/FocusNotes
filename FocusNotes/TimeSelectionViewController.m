@@ -20,6 +20,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = kWarmBeigeColor;
+    if (@available(iOS 13.0, *)) {
+                self.overrideUserInterfaceStyle = UIUserInterfaceStyleLight;
+            }
     [self setupUI];
 }
 

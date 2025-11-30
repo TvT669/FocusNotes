@@ -43,6 +43,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    if (@available(iOS 13.0, *)) {
+              self.overrideUserInterfaceStyle = UIUserInterfaceStyleLight;
+          }
+    
     // 1. 设置背景图
     UIImageView *bgImageView = [[UIImageView alloc] initWithFrame:self.view.bounds];
     bgImageView.image = [UIImage imageNamed:@"warm_bokeh_bg"];
@@ -370,6 +374,10 @@ typedef NS_ENUM(NSInteger, TimerState) {
 
         // 弹出提示框的代码保持不变...
         UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"🍅 专注完成！" message:@"太厉害啦！快记下你的收获吧～(ﾉ≧∀≦)ﾉ" preferredStyle:UIAlertControllerStyleAlert];
+        if (@available(iOS 13.0, *)) {
+                         alert.overrideUserInterfaceStyle = UIUserInterfaceStyleLight;
+                     }
+        //alert.view.tintColor = kWarmCoralColor;
         UIAlertAction *noteAction = [UIAlertAction
                                             actionWithTitle:@"记录笔记"
                                             style:UIAlertActionStyleDefault
