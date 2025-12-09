@@ -36,12 +36,22 @@
 
 @property (nonatomic, strong) AVAudioPlayer *audioPlayer;
 
+// 新增：记录计时结束的绝对时间，用于后台返回时校准
+@property (nonatomic, strong) NSDate *targetEndTime;
+
 @end
 
 @implementation TimeVC
 
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    // 监听 App 回到前台的通知，用于校准时间
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appDidBecomeActive) name:UIApplicationDidBecomeActiveNotification object:nil];
     
     if (@available(iOS 13.0, *)) {
               self.overrideUserInterfaceStyle = UIUserInterfaceStyleLight;
@@ -311,16 +321,22 @@ typedef NS_ENUM(NSInteger, TimerState) {
 // 新的 Action 方法
 - (void)startTimerTapped:(id)sender {
     if (!self.timer) {
-        self.timer = [NSTimer scheduledTimerWithTimeInterval:1.0
-                                                      target:self
-                                                    selector:@selector(timerTick)
-                                                    userInfo:nil
-                                                     repeats:YES];
+        // 使用 NSRunLoopCommonModes 防止滑动或手势时计时器暂停
+        self.timer = [NSTimer timerWithTimeInterval:1.0
+                                             target:self
+                                           selector:@selector(timerTick)
+                                           userInfo:nil
+                                            repeats:YES];
+        [[NSRunLoop currentRunLoop] addTimer:self.timer forMode:NSRunLoopCommonModes];
+        
         [self updateButtonStatesFor:TimerStateRunning];
         
+        // 计算并保存结束时间
+        // 如果是暂停后继续，remainingSeconds 是准确的
+        self.targetEndTime = [NSDate dateWithTimeIntervalSinceNow:self.remainingSeconds];
+        
         // 启动灵动岛
-        NSDate *endTime = [NSDate dateWithTimeIntervalSinceNow:self.remainingSeconds];
-        [[LiveActivityManager shared] startTimerWithEndTime:endTime];
+        [[LiveActivityManager shared] startTimerWithEndTime:self.targetEndTime];
         
         // 注册本地通知 (后台播放提示音的关键)
         [self scheduleLocalNotification];
@@ -330,6 +346,7 @@ typedef NS_ENUM(NSInteger, TimerState) {
 - (void)pauseTimerTapped:(id)sender {
     [self.timer invalidate];
     self.timer = nil;
+    self.targetEndTime = nil; // 暂停时清除目标时间
     [self updateButtonStatesFor:TimerStatePaused];
     
     // 暂停时结束灵动岛
@@ -342,6 +359,7 @@ typedef NS_ENUM(NSInteger, TimerState) {
 - (void)resetTimerTapped:(id)sender {
     [self.timer invalidate];
     self.timer = nil;
+    self.targetEndTime = nil; // 重置时清除目标时间
     self.remainingSeconds = self.totalSeconds;
     [self updateTimerDisplay];
     [self updateButtonStatesFor:TimerStateStopped];
@@ -353,67 +371,123 @@ typedef NS_ENUM(NSInteger, TimerState) {
     [[UNUserNotificationCenter currentNotificationCenter] removePendingNotificationRequestsWithIdentifiers:@[@"TimerDone"]];
 }
 
-// timerTick 方法保持不变
+// App 回到前台时的处理逻辑
+- (void)appDidBecomeActive {
+    // 只有当计时器正在运行，且有目标结束时间时才需要校准
+    if (self.timer && self.targetEndTime) {
+        NSTimeInterval remaining = [self.targetEndTime timeIntervalSinceNow];
+        
+        if (remaining <= 0) {
+            // 时间已到
+            self.remainingSeconds = 0;
+            [self updateTimerDisplay];
+            
+            // 停止计时器
+            [self.timer invalidate];
+            self.timer = nil;
+            self.targetEndTime = nil;
+            
+            // 更新按钮状态为完成
+            [self updateButtonStatesFor:TimerStateFinished];
+            
+            // 停止灵动岛
+            [[LiveActivityManager shared] stopTimer];
+            
+            // ⚠️ 关键修改：这里不再调用 timerTick，也不播放声音
+            // 因为如果时间已到，说明本地通知肯定已经响过了
+            // 我们只需要静默地弹出提示框
+            [self showFinishAlert];
+            
+        } else {
+            // 时间未到，校准剩余时间
+            self.remainingSeconds = (NSInteger)remaining;
+            [self updateTimerDisplay];
+        }
+    }
+}
+
+// timerTick 方法
 - (void)timerTick {
-    self.remainingSeconds--;
+    // 使用 targetEndTime 校准剩余时间，防止 NSTimer 误差积累
+    // 同时也确保了与灵动岛（基于绝对时间）的显示同步
+    if (self.targetEndTime) {
+        NSTimeInterval remaining = [self.targetEndTime timeIntervalSinceNow];
+        self.remainingSeconds = (NSInteger)ceil(remaining); // 向上取整，避免 0.9s 显示为 0
+    } else {
+        self.remainingSeconds--;
+    }
+    
     if (self.remainingSeconds < 0) {
         self.remainingSeconds = 0;
     }
     [self updateTimerDisplay];
 
-    if (self.remainingSeconds == 0) {
+    if (self.remainingSeconds <= 0) {
         [self.timer invalidate];
         self.timer = nil;
+        self.targetEndTime = nil; // 清除目标时间
+        
         [self updateButtonStatesFor:TimerStateFinished]; // 计时结束回到停止状态
         
         // 计时结束，关闭灵动岛
         [[LiveActivityManager shared] stopTimer];
         
-        // 播放提示音
+        // 播放提示音 (只有在前台自然结束时才播放)
         [self playNotificationSound];
 
-        // 弹出提示框的代码保持不变...
-        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"🍅 专注完成！" message:@"太厉害啦！快记下你的收获吧～(ﾉ≧∀≦)ﾉ" preferredStyle:UIAlertControllerStyleAlert];
-        if (@available(iOS 13.0, *)) {
-                         alert.overrideUserInterfaceStyle = UIUserInterfaceStyleLight;
-                     }
-        //alert.view.tintColor = kWarmCoralColor;
-        UIAlertAction *noteAction = [UIAlertAction
-                                            actionWithTitle:@"记录笔记"
-                                            style:UIAlertActionStyleDefault
-                                            handler:^(UIAlertAction * _Nonnull action) {
-                   // 切换到“笔记”Tab 并立即打开新建笔记页
-                   UITabBarController *tabBarController = (UITabBarController *)self.tabBarController;
-                   if (tabBarController && tabBarController.viewControllers.count > 1) {
-                       tabBarController.selectedIndex = 1; // 切到“笔记”
-
-                       // 等一帧确保切换完成后再取目标控制器
-                       dispatch_async(dispatch_get_main_queue(), ^{
-                           UIViewController *selectedVC = tabBarController.selectedViewController;
-                           UINavigationController *notesNav = nil;
-                           if ([selectedVC isKindOfClass:[UINavigationController class]]) {
-                               notesNav = (UINavigationController *)selectedVC;
-                           }
-                           if (notesNav) {
-                               UIViewController *root = notesNav.viewControllers.firstObject;
-                               if ([root isKindOfClass:[NotesTableViewController class]]) {
-                                   NotesTableViewController *notesVC = (NotesTableViewController *)root;
-                                   [notesVC openCreateNote];
-                               }
-                           }
-                       });
-                   }
-               }];
-
-               UIAlertAction *cancelAction = [UIAlertAction
-                                              actionWithTitle:@"稍后再说"
-                                              style:UIAlertActionStyleCancel
-                                              handler:nil];
-
-               [alert addAction:noteAction];
-               [alert addAction:cancelAction];
-        [self presentViewController:alert animated:YES completion:nil];
+        // 弹出提示框
+        [self showFinishAlert];
     }
+}
+
+// 抽取出来的弹窗方法
+- (void)showFinishAlert {
+    // 检查当前是否已经有弹窗，避免重复弹出
+    if (self.presentedViewController) {
+        return;
+    }
+
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"🍅 专注完成！" message:@"太厉害啦！快记下你的收获吧～(ﾉ≧∀≦)ﾉ" preferredStyle:UIAlertControllerStyleAlert];
+    if (@available(iOS 13.0, *)) {
+        alert.overrideUserInterfaceStyle = UIUserInterfaceStyleLight;
+    }
+    
+    UIAlertAction *noteAction = [UIAlertAction
+                                 actionWithTitle:@"记录笔记"
+                                 style:UIAlertActionStyleDefault
+                                 handler:^(UIAlertAction * _Nonnull action) {
+        // 切换到“笔记”Tab 并立即打开新建笔记页
+        UITabBarController *tabBarController = (UITabBarController *)self.tabBarController;
+        if (tabBarController && tabBarController.viewControllers.count > 1) {
+            tabBarController.selectedIndex = 1; // 切到“笔记”
+            
+            // 等一帧确保切换完成后再取目标控制器
+            dispatch_async(dispatch_get_main_queue(), ^{
+                UIViewController *selectedVC = tabBarController.selectedViewController;
+                UINavigationController *notesNav = nil;
+                if ([selectedVC isKindOfClass:[UINavigationController class]]) {
+                    notesNav = (UINavigationController *)selectedVC;
+                }
+                if (notesNav) {
+                    UIViewController *root = notesNav.viewControllers.firstObject;
+                    if ([root isKindOfClass:[NotesTableViewController class]]) {
+                        NotesTableViewController *notesVC = (NotesTableViewController *)root;
+                        [notesVC openCreateNote];
+                    }
+                }
+            });
+        }
+    }];
+    
+    UIAlertAction *cancelAction = [UIAlertAction
+                                   actionWithTitle:@"稍后再说"
+                                   style:UIAlertActionStyleCancel
+                                   handler:nil];
+    
+    [alert addAction:noteAction];
+    [alert addAction:cancelAction];
+    
+    [self presentViewController:alert animated:YES completion:nil];
 }
 
 // 注册本地通知

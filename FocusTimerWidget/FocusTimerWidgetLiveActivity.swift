@@ -20,7 +20,8 @@ struct FocusTimerWidgetLiveActivity: Widget {
             HStack(alignment: .center, spacing: 16) {
                 // 左侧：倒计时
                 VStack(alignment: .leading, spacing: 4) {
-                    Text(context.state.endTime, style: .timer)
+                    // 使用 timerInterval 确保倒计时结束后停在 0:00，而不是继续正计时
+                    Text(timerInterval: context.state.startTime...context.state.endTime, countsDown: true)
                         .font(.system(size: 36, weight: .bold, design: .rounded))
                         .foregroundColor(coralPink)
                         .monospacedDigit()
@@ -59,7 +60,7 @@ struct FocusTimerWidgetLiveActivity: Widget {
                         .padding(.leading, 8)
                 }
                 DynamicIslandExpandedRegion(.trailing) {
-                    Text(context.state.endTime, style: .timer)
+                    Text(timerInterval: context.state.startTime...context.state.endTime, countsDown: true)
                         .font(.title)
                         .foregroundColor(coralPink)
                         .monospacedDigit()
@@ -87,7 +88,7 @@ struct FocusTimerWidgetLiveActivity: Widget {
             } compactTrailing: {
                 // --- C. 收起状态右侧 (设计稿左图) ---
                 // 只显示倒计时数字
-                Text(context.state.endTime, style: .timer)
+                Text(timerInterval: context.state.startTime...context.state.endTime, countsDown: true)
                     .font(.system(size: 12, weight: .semibold))
                     .monospacedDigit()
                     .foregroundColor(coralPink)
